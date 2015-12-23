@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background_selector"
+        android:descendantFocusability="afterDescendants"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp" >
+
+            <ImageView
+                android:id="@+id/article_item_icon"
+                android:layout_width="90dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="4dp"
+                android:background="#CCCCCC"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/article_item_icon"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/article_item_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="新闻反反复复反反复复反反复复反反复复反反复复反fffffffffffffffffffffffffff反复复反反复复反反复复吩咐"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/article_item_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="新闻反反复复反反复复反反复复反反复复反反复复反反复复反反复复反复复反反复复反反复复反反复复反反复复反复复反反复复反反复复反反复复反反复复反复复反反复复反反复复反反复复反反复复反复复反反复复反反复复反反复复反反复复反反复复吩咐"
+                    android:textColor="#8b8b8b"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/article_item_type"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="新闻"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/article_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="10分钟前"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/comm_actionbar" />
+
+    <RelativeLayout
+        android:id="@+id/layout_user_agreement"
+        android:layout_width="fill_parent"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_text_field" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="用户协议"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_forward" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/layout_common_problem"
+        android:layout_width="fill_parent"
+        android:layout_height="58dp"
+        android:background="@drawable/selector_text_field" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="常见问题"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_forward" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/layout_version_update"
+        android:layout_width="fill_parent"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_text_field" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="版本升级"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/label_version_name" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text=""
+            android:textColor="@color/gray_txt"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/layout_about_us"
+        android:layout_width="fill_parent"
+        android:layout_height="58dp"
+        android:background="@drawable/selector_text_field" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="关于我们"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_forward" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" >
+
+        <Button
+            android:id="@+id/btn_quit_login"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/login_btn_bg"
+            android:text="退出登录"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</LinearLayout>

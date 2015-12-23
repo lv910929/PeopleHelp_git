@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/comm_actionbar"/>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="40dp">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="告诉大家帮您宝贵的意见，我们改进会更快哦"
+            android:textColor="@color/gray_txt"/>
+    </RelativeLayout>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+        
+        <EditText
+            android:id="@+id/text_feedback_content"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_edittext_selector"
+            android:gravity="left|top"
+            android:inputType="textMultiLine"
+            android:maxLength="50"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    
+	
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <Button
+            android:id="@+id/btn_send_feedback"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bg"
+            android:text="提交宝贵意见"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</LinearLayout>

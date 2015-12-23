@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background_selector"
+        android:descendantFocusability="afterDescendants"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
+
+        <RelativeLayout
+            android:id="@+id/itemsImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dip"
+                android:layout_marginTop="5dip"
+                android:paddingBottom="2dip" />
+
+            <ImageView
+                android:id="@+id/itemsIcon"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dip"
+                android:layout_marginTop="5dip"
+                android:paddingBottom="2dip"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/itemsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dip"
+                android:text="标题"
+                android:textSize="18dip" />
+
+            <TextView
+                android:id="@+id/itemsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dip"
+                android:paddingLeft="10dip"
+                android:text="内容"
+                android:textColor="@color/gray_txt"
+                android:textSize="15dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
