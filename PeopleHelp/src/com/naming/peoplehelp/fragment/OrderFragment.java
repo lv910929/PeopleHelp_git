@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.naming.peoplehelp.R;
+import com.naming.peoplehelp.activity.HistoryOrderActivity;
 import com.naming.peoplehelp.activity.application.ContextApplication;
 import com.naming.peoplehelp.adapter.OrderAdapter;
 import com.naming.peoplehelp.entity.Order;
@@ -94,7 +95,7 @@ public class OrderFragment extends BaseFragment implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.btn_history_order:
 			if (ContextApplication.hasLogin) {
-				
+				startActivity(new Intent(getActivity(), HistoryOrderActivity.class));
 			}else {
 				redirtToLogin();
 			}

@@ -54,6 +54,8 @@
         
         <activity android:name="com.naming.peoplehelp.activity.AddressConfigActivity"/>
         
+        <activity android:name="com.naming.peoplehelp.activity.HistoryOrderActivity"/>
+        
     </application>
 
 </manifest>
