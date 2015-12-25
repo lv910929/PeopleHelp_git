@@ -12,6 +12,8 @@ public class Order implements Serializable{
 	
 	private Integer order_type;//订单类型
 	
+	private String order_address;//订单地址
+	
 	private String order_detail;//订单详情
 	
 	private String order_time;//订单时间
@@ -19,16 +21,18 @@ public class Order implements Serializable{
 	private Integer order_state;//订单状态 0:尚未开始 ；1：正在进行；2：已经完成
 
 	public Order(String id, String user_name, Integer order_type,
-			String order_detail, String order_time, Integer order_state) {
+			String order_address, String order_detail, String order_time,
+			Integer order_state) {
 		super();
 		this.id = id;
 		this.user_name = user_name;
 		this.order_type = order_type;
+		this.order_address = order_address;
 		this.order_detail = order_detail;
 		this.order_time = order_time;
 		this.order_state = order_state;
 	}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -51,6 +55,14 @@ public class Order implements Serializable{
 
 	public void setOrder_type(Integer order_type) {
 		this.order_type = order_type;
+	}
+
+	public String getOrder_address() {
+		return order_address;
+	}
+
+	public void setOrder_address(String order_address) {
+		this.order_address = order_address;
 	}
 
 	public String getOrder_detail() {

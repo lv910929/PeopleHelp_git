@@ -53,8 +53,8 @@ public class HistoryOrderActivity extends BaseActivity implements OnClickListene
 	private void loadListView(){
 		historyOrders=new ArrayList<Order>();
 		if (ContextApplication.minePhone.equals("15501690442")) {
-			historyOrders.add(new Order("111", "15501690442", 0, "测试测试", "2015-12-16 15:00:00", 0));
-			historyOrders.add(new Order("112", "15501690442", 1, "测试测试", "2015-12-17 15:00:00", 1));
+			historyOrders.add(new Order("111", "15501690442", 0, "上海市浦东新区软件园一期306号","测试测试", "2015-12-10 15:00:00", 2));
+			historyOrders.add(new Order("112", "15501690442", 1, "上海市浦东新区软件园一期306号","测试测试", "2015-12-11 15:00:00", 2));
 		}
 		if (historyOrders.size()>0) {
 			historyOrderListView.setVisibility(View.VISIBLE);
