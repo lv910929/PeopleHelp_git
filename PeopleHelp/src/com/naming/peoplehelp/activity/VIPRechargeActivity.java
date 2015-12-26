@@ -21,6 +21,8 @@ public class VIPRechargeActivity extends BaseActivity implements OnClickListener
 	private TextView titleLabel;
 	private TextView callServiceButton;
 	
+	private TextView userNameLabel;
+	
 	private CustomNestRadioGroup vipRadioGroup;
 	private CheckBox vip1CheckBox;
 	private CheckBox vip2CheckBox;
@@ -30,7 +32,6 @@ public class VIPRechargeActivity extends BaseActivity implements OnClickListener
 	private Button rechargeButton;
 	
 	private Integer rechargeMoney;
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class VIPRechargeActivity extends BaseActivity implements OnClickListener
 		callServiceButton=(TextView) findViewById(R.id.btn_other);
 		callServiceButton.setText("¿Í·þ");
 		
+		userNameLabel=(TextView) findViewById(R.id.label_user_name);
 		vipRadioGroup=(CustomNestRadioGroup) findViewById(R.id.radioGroup_vip);
 		vip1CheckBox=(CheckBox) findViewById(R.id.cb_vip_1);
 		vip2CheckBox=(CheckBox) findViewById(R.id.cb_vip_2);
@@ -54,6 +56,7 @@ public class VIPRechargeActivity extends BaseActivity implements OnClickListener
 		
 		rechargeButton=(Button) findViewById(R.id.btn_recharge_vip);
 		
+		userNameLabel.setText(ContextApplication.minePhone);
 		vip1CheckBox.setChecked(true);
 		rechargeMoney=500;
 		
