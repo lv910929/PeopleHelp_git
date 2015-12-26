@@ -40,4 +40,15 @@
     <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
     
+    <color name="color_menu_back">#F3F2F2</color>
+    <color name="color_menu_lines">#CDCACA</color>
+    
+     <!--标题的颜色-->
+    <color name="title_color_ff0000">#fa5858</color>
+     <!--按钮的颜色及文字颜色-->
+    <color name="btn_color_true">#ffffff</color>
+    <color name="btn_color_false">#fa5858</color>
+    
+    <color name="color_f2f2f2">#f2f2f2</color>
+    
 </resources>

@@ -1,28 +1,33 @@
 package com.naming.peoplehelp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.ab.view.listener.AbOnItemClickListener;
 import com.ab.view.sliding.AbSlidingPlayView;
 import com.naming.peoplehelp.R;
+import com.naming.peoplehelp.activity.CleanCartActivity;
 import com.naming.peoplehelp.adapter.HomeGridAdapter;
 
-public class HomeFragment extends BaseFragment implements AbOnItemClickListener,OnItemClickListener{
+public class HomeFragment extends BaseFragment implements AbOnItemClickListener,OnItemClickListener,OnClickListener{
+	
+	private LinearLayout homeCleanLayout;
 	
 	private AbSlidingPlayView homePlayView = null;
 	
 	private GridView homeGridView;
-	
 	private HomeGridAdapter homeGridAdapter;
 	
 	@Override
@@ -57,8 +62,12 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 	}
 	
 	private void initUI(){
+		
+		homeCleanLayout=(LinearLayout) getActivity().findViewById(R.id.layout_home_clean);
 		homeGridView=(GridView) getActivity().findViewById(R.id.gridView_home);
+		
 		loadHomeList();
+		homeCleanLayout.setOnClickListener(this);
 	}
 	
 	private void loadHomeList(){
@@ -84,6 +93,18 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 		
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.layout_home_clean:
+			startActivity(new Intent(getActivity(), CleanCartActivity.class));
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include layout="@layout/comm_actionbar" />
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/clean_bg"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/view"
+            android:orientation="horizontal" >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:scrollbars="none" >
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_menu_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:scrollbars="none" >
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/m_list_bt"
+            android:background="@color/blue_bg" />
+
+        <RelativeLayout
+            android:id="@+id/m_list_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white" >
+
+            <TextView
+                android:id="@+id/label_all_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="65dp"
+                android:text="￥0" />
+
+            <View
+                android:id="@+id/m_listview"
+                android:layout_width="1dp"
+                android:layout_height="26px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/label_all_price"
+                android:background="@color/color_f2f2f2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/m_listview"
+                android:text="另需服务费￥3"
+                android:textColor="@color/gray_txt" />
+
+            <Button
+                android:id="@+id/btn_submit_order"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_green"
+                android:text="结算"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_clean_cart"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp" >
+
+            <ImageView
+                android:id="@+id/m_list_car"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_shop_car" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/label_all_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/layout_clean_cart"
+            android:layout_alignTop="@+id/layout_clean_cart"
+            android:background="@drawable/goods_tv_bg_selector"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="0"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</LinearLayout>
