@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.naming.peoplehelp.R;
 import com.naming.peoplehelp.activity.CleanCartActivity;
 import com.naming.peoplehelp.data.DemoData;
+import com.naming.peoplehelp.data.GoodsDataBaseInterface;
+import com.naming.peoplehelp.data.OperateGoodsDataBase;
 
 public class RecyclerViewMenuAdapter extends RecyclerView.Adapter<RecyclerViewMenuAdapter.ViewHolder>{
 	
@@ -20,6 +22,15 @@ public class RecyclerViewMenuAdapter extends RecyclerView.Adapter<RecyclerViewMe
     protected List<String> mListMenuData;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
+    /** 数据操作接口 */
+    GoodsDataBaseInterface mGoodsDataBaseInterface = null;
+    
+    public RecyclerViewMenuAdapter(Context context, List<String> datas){
+        this.mListMenuData = datas;
+        this.mContext = context;
+        mLayoutInflater = LayoutInflater.from(mContext);
+        mGoodsDataBaseInterface = OperateGoodsDataBase.getInstance();
+    }
     //定义接口
     public interface OnItemClickListener{
         void onItemClick(View v, int position);
@@ -29,11 +40,7 @@ public class RecyclerViewMenuAdapter extends RecyclerView.Adapter<RecyclerViewMe
     public void setOnItemClickListener(OnItemClickListener listener){
         this.mOnItemClickListener = listener ;
     }
-    public RecyclerViewMenuAdapter(Context context, List<String> datas){
-        this.mListMenuData = datas;
-        this.mContext = context;
-        mLayoutInflater = LayoutInflater.from(mContext);
-    }
+    
     //创建ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,10 +64,17 @@ public class RecyclerViewMenuAdapter extends RecyclerView.Adapter<RecyclerViewMe
             holder.viewRed.setVisibility(View.VISIBLE);
             holder.viewV.setVisibility(View.GONE);
         }
-        setOnListtener(holder);
+        int menuNum=mGoodsDataBaseInterface.getSecondGoodsNumberAll(mContext, position);
+        if (menuNum==0) {
+        	 holder.menuNumLabel.setVisibility(View.GONE);
+		}else {
+			holder.menuNumLabel.setVisibility(View.VISIBLE);
+			holder.menuNumLabel.setText(""+menuNum);
+		}
+        setOnListener(holder);
     }
     //触发
-    protected void setOnListtener(final RecyclerView.ViewHolder holder){
+    protected void setOnListener(final RecyclerView.ViewHolder holder){
         if(mOnItemClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,7 +98,7 @@ public class RecyclerViewMenuAdapter extends RecyclerView.Adapter<RecyclerViewMe
         return mListMenuData.size();
     }
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView mTextView;
+        TextView mTextView,menuNumLabel;
         LinearLayout mLinearLayout;
         View viewRed , viewV;
         public ViewHolder(View itemView) {
@@ -93,6 +107,7 @@ public class RecyclerViewMenuAdapter extends RecyclerView.Adapter<RecyclerViewMe
             mLinearLayout = (LinearLayout) itemView.findViewById(R.id.black_lay);
             viewRed = itemView.findViewById(R.id.item_menu_view_red);
             viewV = itemView.findViewById(R.id.item_menu_view_v);
+            menuNumLabel=(TextView) itemView.findViewById(R.id.label_menu_num);
         }
     }
 }

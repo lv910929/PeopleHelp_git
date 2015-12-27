@@ -106,6 +106,7 @@ public class CleanCartActivity extends BaseActivity implements OnClickListener{
             @Override
             public void onItemClick(View v, int position) {
                 SELECTPOSITION = position;
+                System.out.println("当前位置："+SELECTPOSITION);
                 mRecyclerViewMenuCommonadapter.notifyDataSetChanged();
                 mRecyclerViewContentCommonadapter.notifyDataSetChanged();
                 setAll();
@@ -118,7 +119,7 @@ public class CleanCartActivity extends BaseActivity implements OnClickListener{
      * 商品种类列表    数据填充
      */
     private void setContentCommonadapter() {
-        mRecyclerViewContentCommonadapter = new RecyclerViewContentAdapter(CleanCartActivity.this, stringContentList);
+        mRecyclerViewContentCommonadapter = new RecyclerViewContentAdapter(CleanCartActivity.this, mRecyclerViewMenuCommonadapter, stringContentList);
         menuContentRecyclerView.setAdapter(mRecyclerViewContentCommonadapter);
         mRecyclerViewContentCommonadapter.setOnItemClickListener(new RecyclerViewContentAdapter.OnItemClickListener() {
             @Override
@@ -182,14 +183,14 @@ public class CleanCartActivity extends BaseActivity implements OnClickListener{
      */
     private void setAll() {
         //设置所有购物数量
-        if (mGoodsDataBaseInterface.getSecondGoodsNumberAll(CleanCartActivity.this, SELECTPOSITION) == 0) {
-        	allNumLabel.setVisibility(View.GONE);
+    	if (mGoodsDataBaseInterface.getAllGoodsPrice(CleanCartActivity.this) == 0) {
+    		allNumLabel.setVisibility(View.GONE);
             allPriceLabel.setText("￥0");
             allNumLabel.setText("0");
-        } else {
-        	allPriceLabel.setText("￥" + mGoodsDataBaseInterface.getSecondGoodsPriceAll(CleanCartActivity.this, SELECTPOSITION) + "");
-        	allNumLabel.setText(mGoodsDataBaseInterface.getSecondGoodsNumberAll(CleanCartActivity.this, SELECTPOSITION) + "");
+		}else {
+			allPriceLabel.setText("￥" + mGoodsDataBaseInterface.getAllGoodsPrice(CleanCartActivity.this) + "");
+        	allNumLabel.setText(mGoodsDataBaseInterface.getAllGoodsNumber(CleanCartActivity.this) + "");
         	allNumLabel.setVisibility(View.VISIBLE);
-        }
+		}
     }
 }

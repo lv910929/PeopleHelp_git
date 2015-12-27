@@ -13,7 +13,6 @@ public class OperateGoodsDataBase implements GoodsDataBaseInterface{
     private OperateGoodsDataBase(){
 
     }
-
     /**
      *添加和删除商品数量,并得到商品数量
      */
@@ -50,4 +49,14 @@ public class OperateGoodsDataBase implements GoodsDataBaseInterface{
     public void deleteAll(Context context) {
         OperateGoodsDataBaseStatic.deleteAll(context);
     }
+
+	@Override
+	public int getAllGoodsPrice(Context context) {
+		return OperateGoodsDataBaseStatic.getAllGoodsPrice(context);
+	}
+
+	@Override
+	public int getAllGoodsNumber(Context context) {
+		return OperateGoodsDataBaseStatic.getAllGoodsNumber(context);
+	}
 }

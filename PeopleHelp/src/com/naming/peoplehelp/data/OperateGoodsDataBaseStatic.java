@@ -144,6 +144,44 @@ public class OperateGoodsDataBaseStatic{
         Log.e("TAG" , "根据第一级的下标 得到第二级的所有购物的价格失败");
         return mSecondGoodsPrice;
     }
+    
+    //得到所有购物的价格
+    public static int getAllGoodsPrice(Context context){
+    	DbUtils	utils = DbUtils.create(context);
+        int allGoodsPrice = 0;
+        ArrayList<GoodsBean> mGoodsBeanList = null;
+        mGoodsBeanList = getSecondGoodsTypeList(context);
+        if(mGoodsBeanList == null){
+            Log.e("TAG" , "获取商品类型总数失败");
+            return 0;
+        }
+        for(int i = 0 ; i < mGoodsBeanList.size(); i++){
+        	allGoodsPrice += Integer.parseInt(mGoodsBeanList.get(i).getGoodsnum()) * Integer.parseInt(mGoodsBeanList.get(i).getGoodsprice());
+        }
+        Log.e("TAG" , "根据第一级的下标 得到第二级的所有购物的价格成功：" + allGoodsPrice);
+        utils.close();
+        Log.e("TAG" , "根据第一级的下标 得到第二级的所有购物的价格失败");
+		return allGoodsPrice;
+    }
+    
+    //得到所有购物的数量
+    public static int getAllGoodsNumber(Context context){
+    	DbUtils	utils = DbUtils.create(context);
+        int allGoodsNum = 0;
+        ArrayList<GoodsBean> mGoodsBeanList = null;
+        mGoodsBeanList = getSecondGoodsTypeList(context);
+        if(mGoodsBeanList == null){
+            Log.e("TAG" , "获取商品类型总数失败");
+            return 0;
+        }
+        for(int i = 0 ; i < mGoodsBeanList.size() ; i++){
+            allGoodsNum += Integer.parseInt(mGoodsBeanList.get(i).getGoodsnum());
+        }
+        Log.e("TAG", "根据第一级的下标 得到第二级的所有购物数量成功：" + allGoodsNum);
+        utils.close();
+        return allGoodsNum;
+    }
+    
     /**
      *删除所有的购物数据
      */

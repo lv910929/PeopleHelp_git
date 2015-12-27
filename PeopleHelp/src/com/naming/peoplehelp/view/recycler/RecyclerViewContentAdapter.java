@@ -1,23 +1,20 @@
 package com.naming.peoplehelp.view.recycler;
 
 import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.naming.peoplehelp.R;
 import com.naming.peoplehelp.activity.CleanCartActivity;
-import com.naming.peoplehelp.activity.MainActivity;
 import com.naming.peoplehelp.data.DemoData;
 import com.naming.peoplehelp.data.GoodsDataBaseInterface;
 import com.naming.peoplehelp.data.OperateGoodsDataBase;
-
 
 public class RecyclerViewContentAdapter extends RecyclerView.Adapter<RecyclerViewContentAdapter.ViewHolder>{
 	
@@ -27,8 +24,26 @@ public class RecyclerViewContentAdapter extends RecyclerView.Adapter<RecyclerVie
     private OnItemClickListener mOnItemClickListener;
     /** 数据操作接口 */
     GoodsDataBaseInterface mGoodsDataBaseInterface = null;
+    private RecyclerViewMenuAdapter menuAdapter;
 
-    //定义接口
+    public RecyclerViewContentAdapter(Context context, List<String> datas){
+        this.mListContentData = datas;
+        this.mContext = context;
+        mLayoutInflater = LayoutInflater.from(mContext);
+        mGoodsDataBaseInterface = OperateGoodsDataBase.getInstance();
+    }
+    
+    
+    public RecyclerViewContentAdapter(Context context,
+			RecyclerViewMenuAdapter menuAdapter, List<String> datas) {
+    	 this.mListContentData = datas;
+         this.mContext = context;
+         mLayoutInflater = LayoutInflater.from(mContext);
+         mGoodsDataBaseInterface = OperateGoodsDataBase.getInstance();
+		this.menuAdapter = menuAdapter;
+	}
+
+	//定义接口
     public interface OnItemClickListener{
         void onItemClick(ViewHolder holder);
         void onItemLongClick(ViewHolder holder);
@@ -39,17 +54,12 @@ public class RecyclerViewContentAdapter extends RecyclerView.Adapter<RecyclerVie
     public void setOnItemClickListener(OnItemClickListener listener){
         this.mOnItemClickListener = listener ;
     }
-    public RecyclerViewContentAdapter(Context context, List<String> datas){
-        this.mListContentData = datas;
-        this.mContext = context;
-        mLayoutInflater = LayoutInflater.from(mContext);
-        mGoodsDataBaseInterface = OperateGoodsDataBase.getInstance();
-    }
+    
     //创建ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.i("TAG", "Hellow");
-        View v = mLayoutInflater.inflate(R.layout.item_menu_content,parent,false);
+
+    	View v = mLayoutInflater.inflate(R.layout.item_menu_content,parent,false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -71,10 +81,10 @@ public class RecyclerViewContentAdapter extends RecyclerView.Adapter<RecyclerVie
             holder.mImgJian.setVisibility(View.VISIBLE);
         }
 
-        setOnListtener(holder);
+        setOnListener(holder);
     }
     //触发
-    protected void setOnListtener(final ViewHolder holder){
+    protected void setOnListener(final ViewHolder holder){
         if(mOnItemClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,12 +103,14 @@ public class RecyclerViewContentAdapter extends RecyclerView.Adapter<RecyclerVie
                 @Override
                 public void onClick(View v) {
                     mOnItemClickListener.onItemJiaClick(holder);
+                    menuAdapter.notifyDataSetChanged();
                 }
             });
             holder.mImgJian.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mOnItemClickListener.onItemJianClick(holder);
+                    menuAdapter.notifyDataSetChanged();
                 }
             });
         }
