@@ -1,11 +1,12 @@
 package com.naming.peoplehelp.data;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
-import android.util.Log;
+
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OperateGoodsDataBaseStatic{
     /**
@@ -23,19 +24,15 @@ public class OperateGoodsDataBaseStatic{
             GoodsBean bean = utils.findFirst(Selector.from(GoodsBean.class).where("menupos" , "=" , menupos).and("goodsid", "=", goodsid));
             //如果有这条数据，数量直接加1；否则就插入表里面
             if(bean == null){
-                Log.e("TAG", "还没有该商品");
                 utils.save(goodsBean);
-                Log.e("TAG" , "该商品已经存储");
                 return getSecondGoodsNumber(context , menupos , goodsid);
             }else{
-                Log.e("TAG" , "已经有该商品");
                 //返回添加商品之后的商品总数
                 return updateNum(context, menupos, goodsid, goodsnum);
             }
         } catch (DbException e) {
             e.printStackTrace();
         }
-        Log.e("TAG" , "添加商品失败");
         utils.close();
         return 0;
     }
@@ -46,7 +43,6 @@ public class OperateGoodsDataBaseStatic{
             GoodsBean bean = utils.findFirst(Selector.from(GoodsBean.class).where("menupos", "=", menupos).and("goodsid", "=", goodsid));
             bean.setGoodsnum(goodsnum);
             utils.update(bean);
-            Log.e("TAG", "该商品数量改变为：" + getSecondGoodsNumber(context, menupos, goodsid));
             return getSecondGoodsNumber(context , menupos , goodsid);
         } catch (DbException e) {
             e.printStackTrace();
@@ -60,23 +56,19 @@ public class OperateGoodsDataBaseStatic{
     public static int getSecondGoodsNumber(Context context , int menupos , int goodsid) {
         DbUtils	utils = DbUtils.create(context);
         if(utils == null){
-            Log.e("TAG" , "还没有该数据库");
             return 0;
         }
         try {
             GoodsBean bean = utils.findFirst(Selector.from(GoodsBean.class).where("menupos", "=", menupos).and("goodsid", "=", goodsid));
             if(bean == null){
-                Log.e("TAG" , "还没有该存储商品");
                 return 0;
             }else{
-                Log.e("TAG" , "获取商品数量成功:" + Integer.parseInt(bean.getGoodsnum()));
                 return Integer.parseInt(bean.getGoodsnum());
             }
         } catch (DbException e) {
             e.printStackTrace();
         }
         utils.close();
-        Log.e("TAG", "获取商品数量失败");
         return 0;
     }
     /**
@@ -88,7 +80,6 @@ public class OperateGoodsDataBaseStatic{
         ArrayList<GoodsBean> mGoodsBeanList = null;
         mGoodsBeanList = getSecondGoodsTypeList(context);
         if(mGoodsBeanList == null){
-            Log.e("TAG" , "获取商品类型总数失败");
             return 0;
         }
         for(int i = 0 ; i < mGoodsBeanList.size() ; i++){
@@ -96,7 +87,6 @@ public class OperateGoodsDataBaseStatic{
                 mSecondGoodsNum += Integer.parseInt(mGoodsBeanList.get(i).getGoodsnum());
             }
         }
-        Log.e("TAG", "根据第一级的下标 得到第二级的所有购物数量成功：" + mSecondGoodsNum);
         utils.close();
         return mSecondGoodsNum;
     }
@@ -109,16 +99,14 @@ public class OperateGoodsDataBaseStatic{
         try {
             list = (ArrayList<GoodsBean>) DbUtils.create(context).findAll(GoodsBean.class);
             if(list == null){
-                Log.e("TAG" , "该二级商品还没有存储数据");
                 return null;
             }else{
-                Log.e("TAG" , "根据第一级的下标 得到第二级商品类型总数成功：" + list.size());
                 return list;
             }
         } catch (DbException e) {
             e.printStackTrace();
         }
-        Log.e("TAG" , "根据第一级的下标 得到第二级商品类型总数失败");
+        utils.close();
         return null;
     }
 
@@ -131,7 +119,6 @@ public class OperateGoodsDataBaseStatic{
         ArrayList<GoodsBean> mGoodsBeanList = null;
         mGoodsBeanList = getSecondGoodsTypeList(context);
         if(mGoodsBeanList == null){
-            Log.e("TAG" , "获取商品类型总数失败");
             return 0;
         }
         for(int i = 0 ; i < mGoodsBeanList.size(); i++){
@@ -139,9 +126,7 @@ public class OperateGoodsDataBaseStatic{
                 mSecondGoodsPrice += Integer.parseInt(mGoodsBeanList.get(i).getGoodsnum()) * Integer.parseInt(mGoodsBeanList.get(i).getGoodsprice());
             }
         }
-        Log.e("TAG" , "根据第一级的下标 得到第二级的所有购物的价格成功：" + mSecondGoodsPrice);
         utils.close();
-        Log.e("TAG" , "根据第一级的下标 得到第二级的所有购物的价格失败");
         return mSecondGoodsPrice;
     }
     
@@ -152,15 +137,12 @@ public class OperateGoodsDataBaseStatic{
         ArrayList<GoodsBean> mGoodsBeanList = null;
         mGoodsBeanList = getSecondGoodsTypeList(context);
         if(mGoodsBeanList == null){
-            Log.e("TAG" , "获取商品类型总数失败");
             return 0;
         }
         for(int i = 0 ; i < mGoodsBeanList.size(); i++){
         	allGoodsPrice += Integer.parseInt(mGoodsBeanList.get(i).getGoodsnum()) * Integer.parseInt(mGoodsBeanList.get(i).getGoodsprice());
         }
-        Log.e("TAG" , "根据第一级的下标 得到第二级的所有购物的价格成功：" + allGoodsPrice);
         utils.close();
-        Log.e("TAG" , "根据第一级的下标 得到第二级的所有购物的价格失败");
 		return allGoodsPrice;
     }
     
@@ -171,13 +153,11 @@ public class OperateGoodsDataBaseStatic{
         ArrayList<GoodsBean> mGoodsBeanList = null;
         mGoodsBeanList = getSecondGoodsTypeList(context);
         if(mGoodsBeanList == null){
-            Log.e("TAG" , "获取商品类型总数失败");
             return 0;
         }
         for(int i = 0 ; i < mGoodsBeanList.size() ; i++){
             allGoodsNum += Integer.parseInt(mGoodsBeanList.get(i).getGoodsnum());
         }
-        Log.e("TAG", "根据第一级的下标 得到第二级的所有购物数量成功：" + allGoodsNum);
         utils.close();
         return allGoodsNum;
     }

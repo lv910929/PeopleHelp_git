@@ -3,6 +3,7 @@ package com.naming.peoplehelp.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +12,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.naming.peoplehelp.R;
+import com.naming.peoplehelp.activity.application.ContextApplication;
 import com.naming.peoplehelp.data.DemoData;
 import com.naming.peoplehelp.data.GoodsDataBaseInterface;
 import com.naming.peoplehelp.data.OperateGoodsDataBase;
@@ -133,11 +136,11 @@ public class CleanCartActivity extends BaseActivity implements OnClickListener{
                 /** 点击加号之前还没有数据的时候 */
                 if (numText.isEmpty() || numText.equals("0")) {
                     holder.mImgJian.setVisibility(View.VISIBLE);
-                    holder.mNumber.setText(mGoodsDataBaseInterface.saveGoodsNumber(CleanCartActivity.this, SELECTPOSITION, DemoData.ListMenu_GOODSID[holder.getPosition()], "1", DemoData.ListMenu_PPRICE[holder.getPosition()]) + "");
+                    holder.mNumber.setText(mGoodsDataBaseInterface.saveGoodsNumber(CleanCartActivity.this, SELECTPOSITION, DemoData.ListMenu_GOODSID[SELECTPOSITION][holder.getPosition()], "1", DemoData.ListMenu_PPRICE[SELECTPOSITION][holder.getPosition()]) + "");
                     holder.mNumber.setVisibility(View.VISIBLE);
                 }/** 点击加号之前有数据的时候 */
                 else {
-                    holder.mNumber.setText(mGoodsDataBaseInterface.saveGoodsNumber(CleanCartActivity.this, SELECTPOSITION, DemoData.ListMenu_GOODSID[holder.getPosition()], String.valueOf(Integer.parseInt(numText) + 1), DemoData.ListMenu_PPRICE[holder.getPosition()]) + "");
+                    holder.mNumber.setText(mGoodsDataBaseInterface.saveGoodsNumber(CleanCartActivity.this, SELECTPOSITION, DemoData.ListMenu_GOODSID[SELECTPOSITION][holder.getPosition()], String.valueOf(Integer.parseInt(numText) + 1), DemoData.ListMenu_PPRICE[SELECTPOSITION][holder.getPosition()]) + "");
                 }
                 /** 动画 */
                 GoodsAnimUtil.setAnim(CleanCartActivity.this, holder.mImgJia, cleanCartLayout);
@@ -148,7 +151,7 @@ public class CleanCartActivity extends BaseActivity implements OnClickListener{
             @Override
             public void onItemJianClick(RecyclerViewContentAdapter.ViewHolder holder) {
                 String numText = holder.mNumber.getText().toString().trim();
-                holder.mNumber.setText(mGoodsDataBaseInterface.saveGoodsNumber(CleanCartActivity.this, SELECTPOSITION, DemoData.ListMenu_GOODSID[holder.getPosition()], String.valueOf(Integer.parseInt(numText) - 1), DemoData.ListMenu_PPRICE[holder.getPosition()]) + "");
+                holder.mNumber.setText(mGoodsDataBaseInterface.saveGoodsNumber(CleanCartActivity.this, SELECTPOSITION, DemoData.ListMenu_GOODSID[SELECTPOSITION][holder.getPosition()], String.valueOf(Integer.parseInt(numText) - 1), DemoData.ListMenu_PPRICE[SELECTPOSITION][holder.getPosition()]) + "");
                 numText = holder.mNumber.getText().toString().trim();
                 /** 减完之后  数据为0 */
                 if (numText.equals("0")) {
@@ -164,7 +167,15 @@ public class CleanCartActivity extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_submit_order:
-			finish();
+			if (ContextApplication.hasLogin) {
+				if (mGoodsDataBaseInterface.getAllGoodsPrice(CleanCartActivity.this)==0) {
+					Toast.makeText(getApplicationContext(), "请先选择商品", Toast.LENGTH_SHORT).show();
+				}else {
+					finish();
+				}
+			}else {
+				redirtToLogin();
+			}
 			break;
 		}
 	}
@@ -191,6 +202,14 @@ public class CleanCartActivity extends BaseActivity implements OnClickListener{
 			allPriceLabel.setText("￥" + mGoodsDataBaseInterface.getAllGoodsPrice(CleanCartActivity.this) + "");
         	allNumLabel.setText(mGoodsDataBaseInterface.getAllGoodsNumber(CleanCartActivity.this) + "");
         	allNumLabel.setVisibility(View.VISIBLE);
+		}
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	super.onActivityResult(requestCode, resultCode, data);
+    	if (requestCode == LOGIN_CODE && resultCode == RESULT_OK) {
+    		
 		}
     }
 }

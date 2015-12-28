@@ -27,42 +27,10 @@
             android:textColor="@android:color/black" />
 
         <RelativeLayout
-            android:id="@+id/lay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_menu_content_title"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="3dp" >
-
-            <RatingBar
-                android:id="@+id/item_menu_content_star"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="12dp"
-                android:layout_centerVertical="true"
-                android:progressDrawable="@drawable/ratingbar_bg"
-                android:rating="3.5"
-                android:stepSize="0.1" />
-
-            <TextView
-                android:id="@+id/item_menu_content_sale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/item_menu_content_star"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="月售1208"
-                android:textColor="#979593"
-                android:textSize="13sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/lay_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lay"
+            android:layout_below="@+id/item_menu_content_title"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="5dp" >
 
@@ -82,7 +50,7 @@
                 android:layout_toRightOf="@+id/item_menu_content_prices"
                 android:text="5"
                 android:textColor="@color/title_color_ff0000"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <RelativeLayout

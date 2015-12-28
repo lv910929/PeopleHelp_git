@@ -67,16 +67,16 @@ public class RecyclerViewContentAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
     	
-        holder.mTitle.setText(DemoData.ListMenu_PTITLE[position]);
-        holder.mPrice.setText(DemoData.ListMenu_PPRICE[position]);
+        holder.mTitle.setText(DemoData.ListMenu_PTITLE[CleanCartActivity.SELECTPOSITION][position]);
+        holder.mPrice.setText(DemoData.ListMenu_PPRICE[CleanCartActivity.SELECTPOSITION][position]);
 
         /** 获取存储的商品数量 */
-        if (mGoodsDataBaseInterface.getSecondGoodsNumber(mContext, CleanCartActivity.SELECTPOSITION , DemoData.ListMenu_GOODSID[holder.getPosition()]) == 0) {
+        if (mGoodsDataBaseInterface.getSecondGoodsNumber(mContext, CleanCartActivity.SELECTPOSITION , DemoData.ListMenu_GOODSID[CleanCartActivity.SELECTPOSITION][holder.getPosition()]) == 0) {
             holder.mNumber.setText("");
             holder.mNumber.setVisibility(View.GONE);
             holder.mImgJian.setVisibility(View.GONE);
         } else {
-            holder.mNumber.setText("" + mGoodsDataBaseInterface.getSecondGoodsNumber(mContext, CleanCartActivity.SELECTPOSITION , DemoData.ListMenu_GOODSID[holder.getPosition()]));
+            holder.mNumber.setText("" + mGoodsDataBaseInterface.getSecondGoodsNumber(mContext, CleanCartActivity.SELECTPOSITION , DemoData.ListMenu_GOODSID[CleanCartActivity.SELECTPOSITION][holder.getPosition()]));
             holder.mNumber.setVisibility(View.VISIBLE);
             holder.mImgJian.setVisibility(View.VISIBLE);
         }
@@ -117,7 +117,7 @@ public class RecyclerViewContentAdapter extends RecyclerView.Adapter<RecyclerVie
     }
     @Override
     public int getItemCount() {
-        return mListContentData.size();
+        return DemoData.ListMenu_PTITLE[CleanCartActivity.SELECTPOSITION].length;
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView mImgJia , mImgJian;
