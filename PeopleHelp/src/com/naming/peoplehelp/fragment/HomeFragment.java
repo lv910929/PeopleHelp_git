@@ -13,15 +13,22 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ab.view.listener.AbOnItemClickListener;
 import com.ab.view.sliding.AbSlidingPlayView;
 import com.naming.peoplehelp.R;
 import com.naming.peoplehelp.activity.CleanCartActivity;
+import com.naming.peoplehelp.activity.SelectCityActivity;
+import com.naming.peoplehelp.activity.application.ContextApplication;
 import com.naming.peoplehelp.adapter.HomeGridAdapter;
+import com.naming.peoplehelp.view.MaterialLayout;
 
 public class HomeFragment extends BaseFragment implements AbOnItemClickListener,OnItemClickListener,OnClickListener{
+	
+	private MaterialLayout actionButtonLayout;
+	private TextView cityNameLabel;
 	
 	private LinearLayout homeCleanLayout;
 	
@@ -40,6 +47,7 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 	}
 	
 	private void loadPlayView(){
+		
 		View mPlayView1 = LayoutInflater.from(getActivity()).inflate(R.layout.home_playview_item, null);
 		ImageView playViewImage1 = (ImageView) mPlayView1.findViewById(R.id.image_home_playview);
 		playViewImage1.setBackgroundResource(R.drawable.tab_advertise_1);
@@ -52,6 +60,7 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 		homePlayView.addView(mPlayView1);
 		homePlayView.addView(mPlayView2);
 		homePlayView.startPlay();
+		
 		homePlayView.setOnItemClickListener(this);
 	}
 	
@@ -63,11 +72,21 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 	
 	private void initUI(){
 		
+		actionButtonLayout=(MaterialLayout) getActivity().findViewById(R.id.layout_action_button);
+		cityNameLabel=(TextView) getActivity().findViewById(R.id.label_city_name);
+		
 		homeCleanLayout=(LinearLayout) getActivity().findViewById(R.id.layout_home_clean);
 		homeGridView=(GridView) getActivity().findViewById(R.id.gridView_home);
 		
+		initCity();
 		loadHomeList();
+		actionButtonLayout.setOnClickListener(this);
 		homeCleanLayout.setOnClickListener(this);
+	}
+	
+	private void initCity(){
+		String cityName=ContextApplication.sp.getString("cityName", "…œ∫£");
+		cityNameLabel.setText(cityName);
 	}
 	
 	private void loadHomeList(){
@@ -84,6 +103,7 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 	@Override
 	public void onResume() {
 		super.onResume();
+		initCity();
 	}
 	
 	public void onPause() {
@@ -101,7 +121,9 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 		case R.id.layout_home_clean:
 			startActivity(new Intent(getActivity(), CleanCartActivity.class));
 			break;
-
+		case R.id.layout_action_button:
+			startActivity(new Intent(getActivity(), SelectCityActivity.class));
+			break;
 		default:
 			break;
 		}

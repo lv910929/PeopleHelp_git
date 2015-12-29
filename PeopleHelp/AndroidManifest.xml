@@ -58,6 +58,8 @@
         
         <activity android:name="com.naming.peoplehelp.activity.CleanCartActivity"/>
         
+        <activity android:name="com.naming.peoplehelp.activity.SelectCityActivity"/>
+        
     </application>
 
 </manifest>

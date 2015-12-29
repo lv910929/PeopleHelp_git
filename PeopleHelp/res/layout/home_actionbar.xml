@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="50dp"
     android:background="@color/title_bg" >
+
+    <com.naming.peoplehelp.view.MaterialLayout
+        android:id="@+id/layout_action_button"
+        android:layout_width="80dp"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        app:maskColor="#ffffffff" >
+
+        <ImageView
+            android:id="@+id/image_my_site"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_mycenter_bar_site" />
+
+        <TextView
+            android:id="@+id/label_city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/image_my_site"
+            android:text="上海"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </com.naming.peoplehelp.view.MaterialLayout>
 
     <TextView
         android:id="@+id/label_title"

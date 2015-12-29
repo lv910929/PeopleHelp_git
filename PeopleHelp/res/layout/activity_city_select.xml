@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/comm_actionbar" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_text_field" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="当前定位城市" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:text="已开通城市"
+            android:textColor="@color/gray_txt"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listView_city"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none" />
+
+</LinearLayout>
