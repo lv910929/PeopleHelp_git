@@ -44,8 +44,8 @@ public class SelectCityActivity extends BaseActivity implements OnItemClickListe
 		cities.add(new City(6, "成都"));
 		cities.add(new City(7, "重庆"));
 		cities.add(new City(8, "南京"));
-		cities.add(new City(8, "厦门"));
-		cities.add(new City(8, "武汉"));
+		cities.add(new City(9, "厦门"));
+		cities.add(new City(10, "武汉"));
 	}
 	
 	private void initUI(){
