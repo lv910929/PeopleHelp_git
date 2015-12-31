@@ -22,7 +22,7 @@ public class HomeGridAdapter extends BaseAdapter {
 			R.drawable.home_search_normal, R.drawable.home_more_normal };
 
 	public final static String[] homeTxts = { "清洁服务", "沙发保养", "粉刷服务", "开锁服务",
-			"维修服务", "加装安防", "搬家服务", "失物找寻", "更多服务" };
+			"维修服务", "新房开荒", "搬家服务", "失物找寻", "更多服务" };
 
 	public HomeGridAdapter(Context mContext) {
 		super();
