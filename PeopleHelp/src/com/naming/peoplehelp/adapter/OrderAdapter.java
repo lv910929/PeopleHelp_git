@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.naming.peoplehelp.R;
-import com.naming.peoplehelp.activity.AddressConfigActivity;
 import com.naming.peoplehelp.entity.Order;
 import com.naming.peoplehelp.view.dialog.AlertDialog;
 

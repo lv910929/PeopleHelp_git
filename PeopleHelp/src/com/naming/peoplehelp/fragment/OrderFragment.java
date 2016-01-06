@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +22,8 @@ import com.naming.peoplehelp.activity.HistoryOrderActivity;
 import com.naming.peoplehelp.activity.application.ContextApplication;
 import com.naming.peoplehelp.adapter.OrderAdapter;
 import com.naming.peoplehelp.entity.Order;
+import com.naming.peoplehelp.view.RefreshLayout;
+import com.naming.peoplehelp.view.RefreshLayout.OnLoadListener;
 
 public class OrderFragment extends BaseFragment implements OnClickListener{
 	
@@ -29,6 +32,7 @@ public class OrderFragment extends BaseFragment implements OnClickListener{
 	private RelativeLayout orderLayout;
 	private LinearLayout noOrderLayout;
 	private Button redirectloginButton;
+	private RefreshLayout orderRefreshLayout;
 	private ListView orderListView;
 	private OrderAdapter orderAdapter;
 	
@@ -49,6 +53,7 @@ public class OrderFragment extends BaseFragment implements OnClickListener{
 	
 	private void initUI(){
 		
+		orderRefreshLayout=(RefreshLayout) getActivity().findViewById(R.id.refresh_order);
 		historyOrderButton=(TextView) getActivity().findViewById(R.id.btn_history_order);
 		noLoginLayout=(LinearLayout) getActivity().findViewById(R.id.layout_no_login);
 		redirectloginButton=(Button) getActivity().findViewById(R.id.btn_redirect_login);
@@ -65,7 +70,16 @@ public class OrderFragment extends BaseFragment implements OnClickListener{
 		if (ContextApplication.hasLogin) {
 			orderLayout.setVisibility(View.VISIBLE);
 			noLoginLayout.setVisibility(View.GONE);
-			initData();
+			orderRefreshLayout.setColorScheme(R.color.blue_bg);
+			orderRefreshLayout.post(new Runnable() {
+				@Override
+				public void run() {
+					orderRefreshLayout.setRefreshing(true);
+					initData();
+					orderRefreshLayout.setRefreshing(false);
+				}
+			});
+			refreshListView();
 		}else {
 			noLoginLayout.setVisibility(View.VISIBLE);
 			orderLayout.setVisibility(View.GONE);
@@ -88,6 +102,40 @@ public class OrderFragment extends BaseFragment implements OnClickListener{
 			noOrderLayout.setVisibility(View.VISIBLE);
 			orderListView.setVisibility(View.GONE);
 		}
+	}
+	
+	private void refreshListView(){
+		//下拉刷新
+		orderRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				orderRefreshLayout.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						Order order =new Order("114", "15501690442", 3, "苏州市工业园区国际科技园二期503","测试测试", "2016-01-01 15:00:00", 0);
+						orders.add(0, order);
+						orderAdapter.notifyDataSetChanged();
+						orderRefreshLayout.setRefreshing(false);
+					}
+				}, 1000);
+			}
+		});
+		//上拉刷新
+		orderRefreshLayout.setOnLoadListener(new OnLoadListener() {
+			
+			@Override
+			public void onLoad() {
+				orderRefreshLayout.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						Order order =new Order("102", "15501690442", 0, "常州市钟楼区高新技术创业服务中心503","测试测试", "2015-12-01 15:00:00", 0);
+						orders.add(order);
+						orderAdapter.notifyDataSetChanged();
+						orderRefreshLayout.setLoading(false);
+					}
+				}, 1000);
+			}
+		});
 	}
 
 	@Override
