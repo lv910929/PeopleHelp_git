@@ -60,6 +60,8 @@
         
         <activity android:name="com.naming.peoplehelp.activity.SelectCityActivity"/>
         
+        <activity android:name="com.naming.peoplehelp.activity.HouseReclameActivity"/>
+        
     </application>
 
 </manifest>

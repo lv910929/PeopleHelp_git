@@ -20,6 +20,7 @@ import com.ab.view.listener.AbOnItemClickListener;
 import com.ab.view.sliding.AbSlidingPlayView;
 import com.naming.peoplehelp.R;
 import com.naming.peoplehelp.activity.CleanCartActivity;
+import com.naming.peoplehelp.activity.HouseReclameActivity;
 import com.naming.peoplehelp.activity.SelectCityActivity;
 import com.naming.peoplehelp.activity.application.ContextApplication;
 import com.naming.peoplehelp.adapter.HomeGridAdapter;
@@ -113,6 +114,36 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 		
+		switch (position) {
+		case 0:
+			
+			break;
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			
+			break;
+		case 4:
+			
+			break;
+		case 5:
+			startActivity(new Intent(getActivity(), HouseReclameActivity.class));
+			break;
+		case 6:
+			
+			break;
+		case 7:
+			
+			break;
+		case 8:
+			
+			break;
+			
+		}
 	}
 
 	@Override
