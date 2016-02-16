@@ -116,7 +116,7 @@ public class HomeFragment extends BaseFragment implements AbOnItemClickListener,
 		
 		switch (position) {
 		case 0:
-			
+			startActivity(new Intent(getActivity(), CleanCartActivity.class));
 			break;
 		case 1:
 			

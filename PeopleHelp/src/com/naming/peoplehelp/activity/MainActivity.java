@@ -24,7 +24,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private HomeFragment homeFragment;
 	private OrderFragment orderFragment;
 	private MineFragment mineFragment;
-	private LifeFragment lifeFragment;
+	//private LifeFragment lifeFragment;o
 
 	private RelativeLayout homeTabButton;
 	private ImageView homeTabImage;
@@ -34,9 +34,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private ImageView orderTabImage;
 	private TextView orderTabLabel;
 	
-	private RelativeLayout lifeTabButton;
+	/*private RelativeLayout lifeTabButton;
 	private ImageView lifeTabImage;
-	private TextView lifeTabLabel;
+	private TextView lifeTabLabel;*/
 
 	private RelativeLayout mineTabButton;
 	private ImageView mineTabImage;
@@ -63,9 +63,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		orderTabImage = (ImageView) findViewById(R.id.image_tab_order);
 		orderTabLabel = (TextView) findViewById(R.id.label_tab_order);
 		
-		lifeTabButton = (RelativeLayout) findViewById(R.id.btn_tab_life);
+		/*lifeTabButton = (RelativeLayout) findViewById(R.id.btn_tab_life);
 		lifeTabImage = (ImageView) findViewById(R.id.image_tab_life);
-		lifeTabLabel = (TextView) findViewById(R.id.label_tab_life);
+		lifeTabLabel = (TextView) findViewById(R.id.label_tab_life);*/
 
 		mineTabButton = (RelativeLayout) findViewById(R.id.btn_tab_mine);
 		mineTabImage = (ImageView) findViewById(R.id.image_tab_mine);
@@ -73,7 +73,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 		homeTabButton.setOnClickListener(this);
 		orderTabButton.setOnClickListener(this);
-		lifeTabButton.setOnClickListener(this);
 		mineTabButton.setOnClickListener(this);
 	}
 
@@ -86,11 +85,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.btn_tab_order:
 			setTabSelection(1);
 			break;
-		case R.id.btn_tab_life:
-			setTabSelection(2);
-			break;
 		case R.id.btn_tab_mine:
-			setTabSelection(3);
+			setTabSelection(2);
 			break;
 		}
 	}
@@ -111,12 +107,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			homeTabImage.setImageResource(R.drawable.icon_tabbar_home_pressed);
 			homeTabLabel.setTextColor(getResources().getColor(R.color.blue_bg));
 			if (homeFragment == null) {
-				// 如果MessageFragment为空，则创建一个并添加到界面上
 				homeFragment = new HomeFragment();
-				// transaction.add(0, messageFragment);
 				transaction.add(R.id.panel_content, homeFragment);
 			} else {
-				// 如果MessageFragment不为空，则直接将它显示出来
 				transaction.show(homeFragment);
 			}
 			break;
@@ -133,16 +126,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			}
 			break;
 		case 2:
-			lifeTabImage.setImageResource(R.drawable.icon_tabbar_life_pressed);
-			lifeTabLabel.setTextColor(getResources().getColor(R.color.blue_bg));
-			if (lifeFragment == null) {
-				lifeFragment = new LifeFragment();
-				transaction.add(R.id.panel_content, lifeFragment);
-			} else {
-				transaction.show(lifeFragment);
-			}
-			break;
-		case 3:
 			mineTabImage.setImageResource(R.drawable.icon_tabbar_mine_pressed);
 			mineTabLabel.setTextColor(getResources().getColor(R.color.blue_bg));
 			if (mineFragment == null) {
@@ -166,8 +149,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		orderTabImage.setImageResource(R.drawable.icon_tabbar_message_normal);
 		orderTabLabel.setTextColor(Color.parseColor("#82858b"));
 		
-		lifeTabImage.setImageResource(R.drawable.icon_tabbar_life_normal);
-		lifeTabLabel.setTextColor(Color.parseColor("#82858b"));
+		/*lifeTabImage.setImageResource(R.drawable.icon_tabbar_life_normal);
+		lifeTabLabel.setTextColor(Color.parseColor("#82858b"));*/
 
 		mineTabImage.setImageResource(R.drawable.icon_tabbar_mine_normal);
 		mineTabLabel.setTextColor(Color.parseColor("#82858b"));
@@ -183,9 +166,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		if (orderFragment != null) {
 			transaction.hide(orderFragment);
 		}
-		if (lifeFragment !=null) {
+		/*if (lifeFragment !=null) {
 			transaction.hide(lifeFragment);
-		}
+		}*/
 		if (mineFragment != null) {
 			transaction.hide(mineFragment);
 		}
@@ -200,11 +183,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if ((System.currentTimeMillis() - mExitTime) > 2000) {
-				Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
-				mExitTime = System.currentTimeMillis();
-			} else {
-				finish();
+			if (!homeFragment.isVisible()) {
+				setTabSelection(0);
+			}else {
+				if ((System.currentTimeMillis() - mExitTime) > 2000) {
+					Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+					mExitTime = System.currentTimeMillis();
+				} else {
+					finish();
+				}
 			}
 			return true;
 		}

@@ -76,7 +76,7 @@
             </LinearLayout>
         </RelativeLayout>
         
-        <RelativeLayout
+        <!-- <RelativeLayout
             android:id="@+id/btn_tab_life"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -103,7 +103,7 @@
                     android:text="生活"
                     android:textColor="#82858b" />
             </LinearLayout>
-        </RelativeLayout>
+        </RelativeLayout> -->
         
         <RelativeLayout
             android:id="@+id/btn_tab_mine"
